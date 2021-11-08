@@ -1,13 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import * as eva from '@eva-design/eva';
+import {ApplicationProvider, Button, ButtonGroup, Icon, IconRegistry, Layout, Text} from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import {StartScreen} from "./screens/StartScreen";
+import {AppNavigator} from "./components/Navigation";
+import {CharacterProvider} from "./contexts/CharacterContext";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <CharacterProvider>
+          <AppNavigator/>
+        </CharacterProvider>
+      </ApplicationProvider>
+    </>
   );
 }
 
@@ -18,4 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  introText: {
+    alignItems: 'center'
+  }
 });

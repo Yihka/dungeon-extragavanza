@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Bob",
+    "description": "Bob is, well, Bob. There is nothing special about Bob. Oh Wait I kno- ...Nevermind.",
+    "hp": 100,
+    "damage": 10,
+    "speed": 10,
+    "coins": 0,
+    "items": [],
+    "perks": []
+  },
+  {
+    "name": "Lisa",
+    "description": "Lisa once saw a glass fall onto the floor and she picked up a shard. That is when she knew what she would want to be.",
+    "hp": 50,
+    "damage": 20,
+    "speed": 10,
+    "coins": 0,
+    "items": [],
+    "perks": []
+  },
+  {
+    "name": "Richard",
+    "description": "Richard does not like to be hit, that's why he trains his cardio daily as the local gym.",
+    "hp": 75,
+    "damage": 10,
+    "speed": 20,
+    "coins": 0,
+    "items": [],
+    "perks": []
+  },
+  {
+    "name": "Tracy",
+    "description": "Tracy likes ice cream. Also, she knows how to fight.",
+    "hp": 80,
+    "damage": 12,
+    "speed": 15,
+    "coins": 0,
+    "items": [],
+    "perks": []
+  },
+  {
+    "name": "Antonius",
+    "description": "Antonius is such a fan of rocks that he became one.",
+    "hp": 250,
+    "damage": 8,
+    "speed": 5,
+    "coins": 0,
+    "items": [],
+    "perks": []
+  },
+  {
+    "name": "Jack",
+    "description": "Jack is a man who can only think of money, it's also the reason he's venturing forth into the dungeon. However, physically he is not very strong. He takes a bag of money with him.",
+    "hp": 50,
+    "damage": 5,
+    "speed": 10,
+    "coins": 100,
+    "items": [],
+    "perks": []
+  }
+]
