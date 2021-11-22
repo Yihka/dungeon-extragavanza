@@ -7,15 +7,18 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import {StartScreen} from "./screens/StartScreen";
 import {AppNavigator} from "./components/Navigation";
 import {CharacterProvider} from "./contexts/CharacterContext";
+import {GameProvider} from "./contexts/GameContext";
 
 export default function App() {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        <CharacterProvider>
-          <AppNavigator/>
-        </CharacterProvider>
+        <GameProvider>
+          <CharacterProvider>
+            <AppNavigator/>
+          </CharacterProvider>
+        </GameProvider>
       </ApplicationProvider>
     </>
   );

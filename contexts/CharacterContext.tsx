@@ -1,19 +1,33 @@
 import React, {useState} from 'react';
 import characters from '../data/characters.json';
+import itemsList from '../data/items.json';
 
-export type CharacterState = {
+export type CharacterSheetState = {
+    name: string,
+    description: string,
+    portrait: string,
+    hp: number,
+    damage: number,
+    speed: number,
+    coins: number,
+    items: [],
+    perks: [],
+}
+
+export type CharacterContextState = {
     selectedCharacter: string,
     currentHealth: number,
     maxHealth: number,
     damage: number,
     speed: number,
-    setCharacter(index: number): void,
     coins: 0,
     items: [],
     perks: [],
+    setCharacter(index: number): void,
+    addItem(name: number): void,
 }
 
-export const CharacterContext = React.createContext<CharacterState>({
+export const CharacterContext = React.createContext<CharacterContextState>({
     selectedCharacter: '',
     currentHealth: 0,
     maxHealth: 0,
@@ -22,7 +36,8 @@ export const CharacterContext = React.createContext<CharacterState>({
     coins: 0,
     items: [],
     perks: [],
-    setCharacter: (index: number) => {}
+    setCharacter: (index: number) => {},
+    addItem: (index: number) => {},
 });
 
 export const CharacterProvider: React.FC = ({ children }) => {
@@ -49,6 +64,11 @@ export const CharacterProvider: React.FC = ({ children }) => {
         console.log(`Character data set.`);
     }
 
+    function addItem( index: number ){
+//        setItems({...items, itemsList[index]})
+    }
+
+    // todo: combine stats into one 'character' object
     return (
         <CharacterContext.Provider value={{
             selectedCharacter,
