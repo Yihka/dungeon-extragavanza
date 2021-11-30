@@ -5,6 +5,7 @@ import {StartScreen} from "../screens/StartScreen";
 import {ChooseCharacterScreen} from "../screens/ChooseCharacterScreen";
 import {OptionsScreen} from "../screens/OptionsScreen";
 import {StartOfDungeonScreen} from "../screens/StartOfDungeonScreen";
+import {DungeonScreen} from "../screens/DungeonScreen";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -18,13 +19,20 @@ const { Navigator, Screen } = createStackNavigator();
 // 7. MiniBossRoom - Contains miniboss, strong to kill.
 // 8. BossRoom - Beat the boss to go to the next level, drops items/perks.
 
-export const AppNavigator = () => (
-    <NavigationContainer>
-        <Navigator screenOptions={{ headerShown: false }}>
-            <Screen name='Start' component={StartScreen}/>
-            <Screen name='ChooseCharacter' component={ChooseCharacterScreen}/>
-            <Screen name='Options' component={OptionsScreen}/>
-            <Screen name='StartOfDungeon' component={StartOfDungeonScreen}/>
-        </Navigator>
-    </NavigationContainer>
-);
+// export const GameProvider: React.FC = ({ children }) => {
+export const AppNavigator: React.FC = ({ children }) => {
+    return (
+        <>
+            <NavigationContainer>
+                <Navigator screenOptions={{headerShown: false}}>
+                    <Screen name='Start' component={StartScreen}/>
+                    <Screen name='ChooseCharacter' component={ChooseCharacterScreen}/>
+                    <Screen name='Options' component={OptionsScreen}/>
+                    <Screen name='StartOfDungeon' component={StartOfDungeonScreen}/>
+                    <Screen name='Dungeon' component={DungeonScreen}/>
+                </Navigator>
+            </NavigationContainer>
+            {children}
+        </>
+    );
+}

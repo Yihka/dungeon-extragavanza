@@ -14,11 +14,11 @@ export default function App() {
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        <GameProvider>
-          <CharacterProvider>
-            <AppNavigator/>
-          </CharacterProvider>
-        </GameProvider>
+          <GameProvider>
+            <CharacterProvider>
+              <AppNavigator></AppNavigator>
+            </CharacterProvider>
+          </GameProvider>
       </ApplicationProvider>
     </>
   );

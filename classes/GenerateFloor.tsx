@@ -1,5 +1,6 @@
 import floors from "../data/floors.json";
 import {FloorConfig} from "../types";
+import {Room} from "./types/Room";
 
 export class GenerateFloor {
     floorNumber: number
@@ -25,12 +26,43 @@ export class GenerateFloor {
 
     getFloorConfig(): FloorConfig
     {
+        console.log(`floorNumber: ${this.floorNumber}`);
         return floors[this.floorNumber];
     }
 
     amountOfRoomsToCreate(): number
     {
         return this.getNumberBetweenRange(this.getFloorConfig().minAmountOfRooms, this.getFloorConfig().maxAmountOfRooms)
+    }
+
+    amountOfConnectedRooms(): number{
+        let number = this.getNumberBetweenRange(1, 100);
+
+        if(number < 61){
+            return 1;
+        } else if(number < 91){
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
+    getDirectionOfRoomToCreate(room: Room): string{
+        let choices = [];
+        if(room.north === undefined){
+            choices.push('north');
+        }
+        if(room.east === undefined){
+            choices.push('east');
+        }
+        if(room.south === undefined){
+            choices.push('south');
+        }
+        if(room.west === undefined){
+            choices.push('west');
+        }
+
+        return choices[Math.floor(Math.random() * choices.length)];
     }
 
     getNumberBetweenRange(min: number, max: number)
@@ -40,26 +72,31 @@ export class GenerateFloor {
 
     createRooms(previousRoom: Room, direction: string)
     {
-        let room = null;
+        let room = new Room();
         switch (direction){
             case 'north':
-                room = new Room(null, null, previousRoom, null);
+                room.setSouthRoom(previousRoom);
+                previousRoom.setNorthRoom(room);
                 break;
             case 'east':
-                room = new Room(null, null, null, previousRoom);
+                room.setWestRoom(previousRoom);
+                previousRoom.setEastRoom(room);
                 break;
             case 'south':
-                room = new Room(previousRoom, null, null,  null);
+                room.setNorthRoom(previousRoom);
+                previousRoom.setSouthRoom(room);
                 break;
             case 'west':
-                room = new Room(null, previousRoom, null,  null);
+                room.setEastRoom(previousRoom);
+                previousRoom.setWestRoom(room);
                 break;
         }
         this.roomsCreated++;
 
         if(this.roomsCreated < this.roomsToCreate){
-            // todo: create 1-3 rooms
-            this.createRooms(room, 'north');
+            for(let i = 0; i < this.amountOfConnectedRooms(); i++){
+                this.createRooms(room, this.getDirectionOfRoomToCreate(room));
+            }
         } else {
             // todo: create boss room
         }

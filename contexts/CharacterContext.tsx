@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import characters from '../data/characters.json';
 import itemsList from '../data/items.json';
+import {GameContext} from "./GameContext";
 
 export type CharacterSheetState = {
     name: string,
@@ -50,7 +51,11 @@ export const CharacterProvider: React.FC = ({ children }) => {
     const [ items, setItems ] = useState<[]>([]);
     const [ perks, setPerks ] = useState<[]>([]);
 
+    const { resetGame } = useContext(GameContext);
+
     function setCharacter( index: number ){
+        resetGame();
+
         let character = characters[index];
         setSelectedCharacter(character.name);
         setCurrentHealth(character.hp);
@@ -60,8 +65,6 @@ export const CharacterProvider: React.FC = ({ children }) => {
         setCoins(character.coins);
         setItems(character.items);
         setPerks(character.perks);
-
-        console.log(`Character data set.`);
     }
 
     function addItem( index: number ){

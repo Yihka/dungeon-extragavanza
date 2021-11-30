@@ -1,7 +1,7 @@
 {
   "1": {
-    "minAmountOfRooms": 5,
-    "maxAmountOfRooms": 10,
+    "minAmountOfRooms": 8,
+    "maxAmountOfRooms": 15,
     "minAmountOfBossRooms": 1,
     "maxAmountOfBossRooms": 1
   }
