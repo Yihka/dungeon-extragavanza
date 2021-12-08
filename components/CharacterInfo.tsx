@@ -2,10 +2,10 @@ import {Button, Card, Icon, Text} from "@ui-kitten/components";
 import {Image, StyleSheet, View} from "react-native";
 import React, {useContext} from "react";
 import {useNavigation} from "@react-navigation/native";
-import {CharacterContext, CharacterSheetState} from "../contexts/CharacterContext";
+import {CharacterContext, CharacterState} from "../contexts/CharacterContext";
 
-export const CharacterInfo: React.FC<{ character: CharacterSheetState, index: number}> = ({ character, index}) => {
-    const { setCharacter } = useContext(CharacterContext);
+export const CharacterInfo: React.FC<{ character: CharacterState, index: number}> = ({ character, index}) => {
+    const { chooseCharacter } = useContext(CharacterContext);
     const navigation = useNavigation();
 
     const CardHeader = (name, props) => (
@@ -28,18 +28,45 @@ export const CharacterInfo: React.FC<{ character: CharacterSheetState, index: nu
 
     function selectCharacter(characterIndex: number){
         console.log(`You have selected ${characterIndex}`);
-        setCharacter(characterIndex);
-
-
+        chooseCharacter(characterIndex);
 
         navigation.navigate('StartOfDungeon');
     }
 
     let portraitImage = require("../assets/characters/bob.jpg");
+    //let portraitImage2 = require("../assets/characters/" + character.portrait);
+    //let portraitImage3 = require(() => { return "../assets/characters/" + character.portrait });
+    //let portraitImage4 = require( ("../assets/characters/" + character.portrait) );
+
+    // const coolThing = (name: string) => {
+    //     if(!name)
+    //         return require(`../assets/characters/bob.jpg`)
+    //
+    //     //return require(`../assets/characters/${name}`)
+    // }
+    // let portraitImage5 = coolThing('bob.jpg');
+
+    console.log('beep:');
+    console.log('beep:');
+
+    console.log(character.portrait);
+//    let portraitImage5 = require( `../assets/characters/${character.portrait}` );
+    //let portraitImage5 = null;
+
+    // if(true) {
+    //     //let test = 'bob.jpg';
+    //     //let portraitImage5 = require(`../assets/characters/${test}`);
+    // }else {
+    //     let portraitImage5 = require(`../assets/characters/${character.portrait}`);
+    // }
+    //else {
+    //    let portraitImage5 = require("../assets/characters/bob.jpg");
+    //}
+
 
     return (
         <Card header={CardHeader(character.name)}>
-            <Image source={ portraitImage} style={styles.portrait}/>
+            <Image source={ portraitImage } style={styles.portrait}/>
             <Text>
                 {character.description}
             </Text>

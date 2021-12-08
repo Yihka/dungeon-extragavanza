@@ -1,15 +1,16 @@
 import React, {useContext, useEffect, useState} from "react";
-import {SafeAreaView} from "react-native";
+import {SafeAreaView, StyleSheet} from "react-native";
 import {Button, Card, Divider, Layout, List, Text, TopNavigation} from "@ui-kitten/components";
-import items from "../data/items.json";
-import {CharacterContext} from "../contexts/CharacterContext";
 import {GameContext} from "../contexts/GameContext";
 import {useNavigation} from "@react-navigation/native";
+import {Item} from "../components/Item";
+import {Items} from "../data/Items";
 
 export const StartOfDungeonScreen = () => {
     const [itemChosen, setItemChosen ] = useState<boolean>(false);
     const { nextFloor } = useContext(GameContext);
     const navigation = useNavigation();
+    const items = new Items().getItems()
 
     useEffect(() => {
         console.log('Usee effect');
@@ -20,12 +21,14 @@ export const StartOfDungeonScreen = () => {
         return [items[0], items[1], items[2]];
     }
 
-    const renderItem = (item) => {
+    const renderItem = ({ item }) => {
+        console.log('item here');
+        console.log(item);
         return (
-            <Card>
-                <Text>{item.item.name}</Text>
+            <>
+                <Item item={item}/>
                 <Button onPress={ () => { chooseItem() }}>Choose item</Button>
-            </Card>
+            </>
         )
     }
 
@@ -47,10 +50,10 @@ export const StartOfDungeonScreen = () => {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{flex:1}}>
             <TopNavigation title='Before the dungeon' alignment='center'/>
             <Divider/>
-            <Layout>
+            <Layout style={{ flex: 1}}>
                 <Text>
                     Before you venture forth into the dungeon, a hooded man appears before you, giving you a choice between 3 items to take with you. Which one do you pick?
                 </Text>
@@ -60,3 +63,9 @@ export const StartOfDungeonScreen = () => {
         </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    list: {
+        maxHeight: 360
+    }
+})

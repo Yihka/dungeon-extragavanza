@@ -3,12 +3,8 @@ import {Divider, Layout, List, Text, TopNavigation} from "@ui-kitten/components"
 import {SafeAreaView, TextInput} from "react-native";
 import characters from '../data/characters.json';
 import {CharacterInfo} from "../components/CharacterInfo";
-import {CharacterSheetState} from "../contexts/CharacterContext";
 
-export const ChooseCharacterScreen: React.FC = (kinderen) => {
-    console.log(characters);
-
-    kinderen.children
+export const ChooseCharacterScreen: React.FC = () => {
 
     const renderItem = ({ item, index }) => (
         <CharacterInfo character={item} index={index}></CharacterInfo>

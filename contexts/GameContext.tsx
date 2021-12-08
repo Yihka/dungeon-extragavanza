@@ -63,32 +63,32 @@ export const GameProvider: React.FC = ({ children }) => {
     }
 
     function nextRoom(direction: string){
-        console.log(`nextRoom`);
-
         let previousRoom: Room = game.currentRoom;
         let nextRoom: Room;
-
-        console.log('Changing room');
 
         switch (direction) {
             case 'north':
                 if (game.currentRoom.north instanceof Room) {
                     nextRoom = game.currentRoom.north;
+                    nextRoom.setVisited(true);
                 }
                 break;
             case 'east':
                 if (game.currentRoom.east instanceof Room) {
                     nextRoom = game.currentRoom.east;
+                    nextRoom.setVisited(true);
                 }
                 break;
             case 'south':
                 if (game.currentRoom.south instanceof Room) {
                     nextRoom = game.currentRoom.south;
+                    nextRoom.setVisited(true);
                 }
                 break;
             case 'west':
                 if (game.currentRoom.west instanceof Room) {
                     nextRoom = game.currentRoom.west;
+                    nextRoom.setVisited(true);
                 }
                 break;
         }

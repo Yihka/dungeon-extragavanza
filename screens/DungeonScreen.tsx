@@ -2,17 +2,10 @@ import React, {useContext, useEffect} from "react";
 import {SafeAreaView} from "react-native";
 import {Button, ButtonGroup, Divider, Layout, Text, TopNavigation} from "@ui-kitten/components";
 import {GameContext} from "../contexts/GameContext";
+import {MiniMap} from "../components/MiniMap";
 
 export const DungeonScreen = () => {
     const { game, nextRoom } = useContext(GameContext);
-
-    useEffect(() => {
-        console.log(game.currentRoom);
-        console.log(game.currentRoom.north);
-        console.log(game.currentRoom.east);
-        console.log(game.currentRoom.south);
-        console.log(game.currentRoom.west);
-    }, [])
 
     function goNorth(){
         nextRoom('north');
@@ -46,6 +39,7 @@ export const DungeonScreen = () => {
                 <Text>TODO: Implement the actual room.</Text>
             </Layout>
             <Layout>
+                <MiniMap currentRoom={game.currentRoom}/>
                 <Text>
                     Which direction do you want to go?
                 </Text>
